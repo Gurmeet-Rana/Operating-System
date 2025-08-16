@@ -10,19 +10,37 @@ void zombieProcess()
     pid_t p=fork();
     if(p==0)
     {
-        for(int i=0;i<10;i++)
-        {
-            printf("In child %d \n",i+1);
-        }
+        printf("Child process (Zombie Demo) PID : %d\n",getpid());  
+
+        exit(0); //Child exits , becomes zombie until parent calls wait . 
+
     }
     else
     {
-        printf("In parent !\n");
-        while(1);
+        sleep(10); // Parent sleeps , child becomes zombie  
+        wait(NULL); //Parent collets child;s exit status , zombie is cleaned up .
+        printf("Parent cleaned up zombie child !\n");
+         
     }
 
-    //Prevention 
     
+}
+void orphanProcess()
+{
+    //Orphan process is the process whose parent has terminated while the child is still running 
+    pid_t p=fork();
+    if(p>0)
+    {
+        printf("Parent process (Orphan Demo) id = %d\n",getpid());
+        exit(0);
+    }  
+    else if(p==0)
+    {
+        sleep(5);
+        printf("Child process orphan id= %d parent id =%d \n",getpid(),getppid());
+        
+    }
+
 }
 int main()
 {
