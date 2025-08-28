@@ -5,9 +5,9 @@ typedef struct process
     int pid,AT,BT,WT,TAT,CT,ST;
 }process;
 
-void swap(int *ptr1,int *ptr2)
+void swap(process *ptr1,process *ptr2)
 {
-    int temp=*ptr2;
+    process temp=*ptr2;
     *ptr2=*ptr1;
     *ptr1=temp;
 }
@@ -21,14 +21,11 @@ int Partition(process arr[],int low,int high)
         if(arr[j].AT<pivot)
         {
             i++;
-            swap(&arr[i].AT,&arr[j].AT);
+            swap(&arr[i],&arr[j]);
         }
         j++;
     }
-    if(i+1!=high)
-    {
-        swap(&arr[i].AT,&arr[high].AT);
-    }
+    swap(&arr[i+1],&arr[high]);    
     return i+1;
 }
 
@@ -66,19 +63,30 @@ int main()
 
     int time=0;
 
-    printf("ProcessId \t ArrivalTime \t BurstTime \t StartTime \t CompletionTime \t TurnAroundTime \t WaitingTime \n");
+    printf("%-10s %-12s %-10s %-10s %-15s %-15s %-12s\n",
+       "ProcessId", "ArrivalTime", "BurstTime", "StartTime",
+       "CompletionTime", "TurnAroundTime", "WaitingTime");
+
+    int totalTAT=0,totalWT=0;
     
     for(int i=0;i<n;i++)
     {
+        
+        if(time<arr[i].AT)
+        {
+            time=arr[i].AT;
+        }
         arr[i].ST=time;
         time+=arr[i].BT;
         arr[i].CT=time;
-        arr[i].TAT=arr[i].BT-arr[i].AT;
+        arr[i].TAT=arr[i].CT-arr[i].AT;
+        totalTAT+=arr[i].TAT;
         arr[i].WT=arr[i].TAT-arr[i].BT;
-        printf("%d \t %d \t %d \t %d \t %d \t %d \t %d \n",arr[i].pid,arr[i].AT,arr[i].BT,arr[i].ST,arr[i].CT,arr[i].TAT,arr[i].WT);
+        totalWT+=arr[i].WT;
+        printf("%-10d %-12d %-10d %-10d %-15d %-15d %-12d\n",arr[i].pid,arr[i].AT,arr[i].BT,arr[i].ST,arr[i].CT,arr[i].TAT,arr[i].WT);
     }
-
     
+    printf("Average TAT %d Average WT %d\n",totalTAT/n,totalWT/n);
 
     return 0;
 }
