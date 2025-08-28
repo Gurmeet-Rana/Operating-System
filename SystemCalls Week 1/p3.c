@@ -15,13 +15,13 @@ int main()
     }
     else if(p==0)
     {
-        printf("Child process id = %d Parent id = %d\n ",p,getpid());
+        printf("Child process id = %d Parent id = %d\n ",getpid(),getppid());
         exit();
     }
     else
     {
         wait(); // Waits for any child process
-        printf("Parent Process id = %d",p);
+        printf("Parent Process id = %d",getpid());
     }
     return 0;
 }

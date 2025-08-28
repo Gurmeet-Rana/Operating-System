@@ -1,4 +1,3 @@
-/* Write a program to show working of execlp() system call by execuAng ls command */
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
