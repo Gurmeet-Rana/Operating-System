@@ -18,12 +18,7 @@ First line of input is an integer representing finish, next line has n represent
 #include<vector>
 #include<algorithm>
 using namespace std;
-int find(vector<int> &scooters,int curr)
-{
-    int val=scooters[curr]+10;
-    //FIND THE RIGHT MOST SCOOTER VALUE THIS OR GREATER 
-    int ans=scooters.size()-1;
-}
+ 
 int main()
 {
     int n;
@@ -41,29 +36,24 @@ int main()
 
     sort(scooters.begin(),scooters.end());
                                             
-    int totalWalk=0;
-
+     
     //FIND THE END SCOOTER WHICH IS GREATER THAN OR EQUAL TO CURRENT 
-    int currScooter=-1;
-     // 4 7 14 20 
-    while(currScooter<n)
-    {
-        int i=find(scooters,currScooter);
-        if(currScooter!=-1)
-        {
-            totalWalk+=scooters[i]-scooters[currScooter];
-            currScooter=i;
+    int indx=0,totalWalk=0,pos=0; // index in scooter , pos on street ; 
+    while(pos<finish && indx<n)
+    {         
+        while(indx<n && scooters[indx]<pos)
+            indx++;
         }
-        else
-        {
-            currScooter=i;
+        if(indx==n)
+        {             
+            break;
         }
+        pos=scooters[indx];
+        int newPos=min(pos+10,finish);
+        totalWalk+=newPos-pos;
+        pos=newPos;
     }
 
-    if(currScooter+10<=finish)
-    {
-        totalWalk+=finish-currScooter;
-    }
     
     cout<<"Answer : "<<totalWalk<<endl;
     return 0;
