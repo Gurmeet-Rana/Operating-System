@@ -22,7 +22,7 @@ void main()
         arr[i]=p;
     }
     int processFinished=0,totalTAT=0,totalWT=0;
-    printf("-15s %-15s %-15s %-15s %-15s %-15s %-15s\n","Process","ArrivalTime","BurstTime","StartTime",
+    printf("%-15s %-15s %-15s %-15s %-15s %-15s %-15s\n","Process","ArrivalTime","BurstTime","StartTime",
     "CompletionTime","TurnAroundTime","WaitingTime");
     int time=0; 
     while(processFinished<n)
@@ -57,7 +57,7 @@ void main()
                     arr[pid].CT=time;
                     arr[pid].TAT=arr[pid].CT-arr[pid].AT;
                     arr[pid].WT=arr[pid].TAT-arr[pid].BT;
-                    printf("-15d %-15d %-15d %-15d %-15d %-15d %-15d\n",pid,arr[pid].AT,arr[pid].BT,arr[pid].ST,
+                    printf("%-15d %-15d %-15d %-15d %-15d %-15d %-15d\n",pid,arr[pid].AT,arr[pid].BT,arr[pid].ST,
     arr[pid].CT,arr[pid].TAT,arr[pid].WT);
 
                 }

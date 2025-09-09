@@ -65,20 +65,20 @@ void main()
         {
             time=arr[i].AT;
         }
-        else{
-            arr[i].ST=time;
-            time+=arr[i].BT;
-            arr[i].CT=time;
-            arr[i].TAT=arr[i].CT-arr[i].AT;
-            arr[i].WT=arr[i].TAT-arr[i].BT;
-        }
+    
+        arr[i].ST=time;
+        time+=arr[i].BT;
+        arr[i].CT=time;
+        arr[i].TAT=arr[i].CT-arr[i].AT;
+        arr[i].WT=arr[i].TAT-arr[i].BT;
+        
     }
 
     //SORTED 
-    printf("%-15s %-15s %-15s %-15s %-15s %-15s","Arrival Time","Burst Time","Start Time","Completion Time","TurnAroundTime","WaitingTime");
+    printf("%-15s %-15s %-15s %-15s %-15s %-15s\n","Arrival Time","Burst Time","Start Time","Completion Time","TurnAroundTime","WaitingTime");
     for(int i=0;i<n;i++)
     {
-        printf("%-15s %-15s %-15s %-15s %-15s %-15s",arr[i].AT,arr[i].BT,arr[i].ST,arr[i].CT,arr[i].TAT,arr[i].WT);
+        printf("%-15d %-15d %-15d %-15d %-15d %-15d\n",arr[i].AT,arr[i].BT,arr[i].ST,arr[i].CT,arr[i].TAT,arr[i].WT);
     }
 
  

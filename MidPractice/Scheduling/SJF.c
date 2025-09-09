@@ -46,7 +46,7 @@ void main()
             arr[shortestJob].WT=arr[shortestJob].TAT-arr[shortestJob].BT;
             processFinished++;
             arr[shortestJob].completed=1;
-            printf("%-15s %-15s %-15s ",shortestJob,arr[shortestJob].AT,arr[shortestJob].BT);
+            printf("%-15d %-15d %-15d\n",shortestJob,arr[shortestJob].AT,arr[shortestJob].BT);
         }
         else
         {

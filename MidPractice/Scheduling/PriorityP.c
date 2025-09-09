@@ -2,7 +2,7 @@
 #include<stdlib.h>
 typedef struct Process
 {
-    int AT,BT,CT,ST,TAT,WT,p;
+    int AT,BT,CT,ST,TAT,WT,p,RT;
 }Process;
 void main()
 {
@@ -19,6 +19,10 @@ void main()
         scanf("%d",&p.BT);
         printf("Enter the priority : \n");
         scanf("%d",&p.p);
+
+        
+        arr[i]=p;
+        arr[i].RT=arr[i].BT;
     }
     int time=0;
     int processFinished=0,totalTAT=0,totalWT=0;
@@ -39,7 +43,20 @@ void main()
             time++;
         }
         else{
-            
+            if(arr[pid].RT==arr[pid].BT)
+            {
+                arr[pid].ST=time;
+            }
+            else
+            {
+                arr[pid].RT--;
+                if(arr[pid].RT==0)
+                {
+                    arr[pid].CT=time;
+                    arr[pid].TAT=arr[pid].CT-arr[pid].AT;
+                    arr[pid].WT=arr[pid].TAT-arr[pid].BT;
+                }
+            }
         }
     }
 
