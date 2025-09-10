@@ -34,36 +34,40 @@ int main()
         isFinished[i]=0;
     }
 
-    while (processFinished<n)
-    {
-        int pid=-1,earliest=1e9,maxPriority=-1;
-        for(int i=0;i<n;i++)
-        {
-            if(isFinished[i] || arr[i].AT>time) continue;
-            if(arr[i].p>maxPriority || (arr[i].p==maxPriority && arr[i].AT<earliest) || ( arr[i].p==maxPriority && arr[i].AT==earliest && arr[i].pid<pid))
-            {
-                maxPriority=arr[i].p;
-                earliest=arr[i].AT;
-                pid=arr[i].pid;
+   while (processFinished < n) {
+        int idx = -1, earliest = 1e9, maxPriority = -1;
+
+        for (int i = 0; i < n; i++) {
+            if (isFinished[i] || arr[i].AT > time) continue;
+
+            if (arr[i].p > maxPriority ||
+            (arr[i].p == maxPriority && arr[i].AT < earliest) ||
+            (arr[i].p == maxPriority && arr[i].AT == earliest && i < idx)) {
+                
+                maxPriority = arr[i].p;
+                earliest = arr[i].AT;
+                idx = i;
             }
         }
-        if(pid!=-1)
-        {
-            arr[pid].ST=time;
-            time+=arr[pid].BT;
-            arr[pid].CT=time;
-            arr[pid].TAT=arr[pid].CT-arr[pid].AT;
-            arr[pid].WT=arr[pid].TAT-arr[pid].BT;
-            printf("%-15d %-15d %-15d %-15d %-15d %-15d %-15d %-15d\n",arr[pid].pid, arr[pid].p,arr[pid].AT,arr[pid].BT,arr[pid].ST,arr[pid].CT,arr[pid].TAT,arr[pid].WT);
 
-            isFinished[pid]=1;
+        if (idx != -1) {
+            arr[idx].ST = (time < arr[idx].AT) ? arr[idx].AT : time;
+            arr[idx].CT = arr[idx].ST + arr[idx].BT;
+            arr[idx].TAT = arr[idx].CT - arr[idx].AT;
+            arr[idx].WT = arr[idx].TAT - arr[idx].BT;
+
+            printf("%-15d %-15d %-15d %-15d %-15d %-15d %-15d %-15d\n",
+                arr[idx].pid, arr[idx].p, arr[idx].AT, arr[idx].BT,
+                arr[idx].ST, arr[idx].CT, arr[idx].TAT, arr[idx].WT);
+
+            isFinished[idx] = 1;
             processFinished++;
-        }
-        else
-        {
+            time = arr[idx].CT;
+        } else {
             time++;
         }
     }
+
     
     return 0 ; 
 }

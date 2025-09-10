@@ -12,9 +12,7 @@ typedef struct Queue
     int* arr; // STORE THE INDICES OF THE PROCESSES 
 }Queue;
 
-
 Queue *createQueue(int size)
-
 {
     Queue *q=(Queue*)malloc(sizeof(Queue));
     q->size=size;
@@ -86,39 +84,56 @@ void main()
     printf("Enter the Time Quantum : \n");
     scanf("%d",&tq);
 
-    Queue *q=createQueue(n);
+    Queue *q=createQueue(10*n);
 
     int time=0;
     int processCompleted=0;
+    int *visited=calloc(n,sizeof(int));
+
+    printf("%-15s %-15s %-15s %-15s %-15s %-15s\n","ArrivalTime","BurstTime","StartingTime","Completion Time","TurnAroundTime","WaitingTime");
+
     while(processCompleted<n)
     {
         for(int i=0;i<n;i++)
         {
-            if(arr[i].complete==1 || arr[i].AT>time) continue;
+            if(visited[i] || arr[i].complete==1 || arr[i].AT>time) continue;
             Enqueue(q,i);
+            visited[i]=1;
         }
 
         if(isEmpty(q)) 
         {
-            time+=tq;
+            time++;
             continue;
-        }
-        time+=tq;
+        }       
         int i=getFront(q);
         Dequeue(q);
         if(arr[i].RT==arr[i].BT)
         {
             arr[i].ST=time;
         }
-        arr[i].RT-=tq;
-        if(arr[i].RT<=0)
+        int execTime=(arr[i].RT<tq)?arr[i].RT:tq;
+        time+=execTime;
+        arr[i].RT-=execTime;
+
+        //ADD PROCESSES THAT ARRIVED DURING THIS TIME QUANTUM 
+        for(int j=0;j<n;j++)
+        {
+            if(!visited[j] && arr[j].AT<=time)
+            {
+                Enqueue(q,j);
+                visited[j]=1;
+            }
+        }
+
+        if(arr[i].RT==0)
         {
             arr[i].CT=time;
             arr[i].TAT=arr[i].CT-arr[i].AT;
             arr[i].WT=arr[i].TAT-arr[i].BT;
             processCompleted++;
             arr[i].complete=1;
-            printf("%-15s %-15s %-15s %-15s %-15s %-15s\n",arr[i].AT,arr[i].BT,arr[i].ST,arr[i].CT,arr[i].TAT,arr[i].WT);
+            printf("%-15d %-15d %-15d %-15d %-15d %-15d\n",arr[i].AT,arr[i].BT,arr[i].ST,arr[i].CT,arr[i].TAT,arr[i].WT);
         }
         else{
             Enqueue(q,i);
