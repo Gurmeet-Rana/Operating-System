@@ -1,0 +1,27 @@
+There are two ways for the IPC : 
+1. Message Passing : Processes communicate by sending and receiving messages to exchange data. One Process sends the data and the other process receive the data , it can be achieved using different methods like Sockets, Message Queues or Pipes.Different methods of IPC : 
+
+a. Pipes : A Unidirectional communication channed used for IPC , one process writes to the pipe , and the other process reads from it . Two Types of Pipe : Anonymous Pipes and Named Pipes(FIFOs).
+
+-> Pipes r a type of IPC technique that allows two or more processes to communicate with each other by creating a unidirectional or bi-directional channel btw them . A pipe is a virtual communicaiton channel that allows data to be transferred btw processes , either one-way or two-way . Pipes can be implemented using System Calls in most modern OS , including Linux , macOS , and windows. 
+    # Advantages and Disadvantages of Pipes : 
+    1. Simplicity : 
+    2. Efficiency : Pipes can transfer data quickly and with minimal overhead. 
+    3. Reliability : Pipes are reliable way for processes to communicate ,as they can detect errors in data transmission and ensure that data is delivered correctly . 
+
+    4. Flexibility : 
+
+    # Disadvantages of Pipes : 
+    1. Limited capacity : 
+    2. Unidirectional : 
+    3. Synchronization : 
+    4. Limited Scalability : 
+
+
+
+b. Sockets : R used for nw communication 
+c. Shared Memory : 
+d. Semaphores : 
+e. Message Queuing : 
+
+2. Shared Memory : Both process uses the shared memory and inter process communicaiton happens . Shared Memory can be visualized as the global variable allowing multiple processes to share data . 
