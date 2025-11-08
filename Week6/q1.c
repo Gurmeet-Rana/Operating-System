@@ -8,7 +8,6 @@ c) shared memory
 #include<stdio.h>
 #include<unistd.h> // FOR SC like pipe() , fork() , read() and write();
 #include<string.h> 
-
 int main()
 {
     // Pile is a unidirectional communication channel used between realted processes , it has two ends fd[0] , fd[1]; 
