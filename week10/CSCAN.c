@@ -8,10 +8,10 @@ int main()
     int tracks[n];
     for(int i=0;i<n;i++)
     {
-        scanf("%d",tracks[i]);
+        scanf("%d",&tracks[i]);
     }
     int totalSeekMovement=0;
     printf("Total Seek Movement : %d\n",totalSeekMovement);
-    
+
     return 0;
 }
