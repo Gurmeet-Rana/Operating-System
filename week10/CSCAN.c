@@ -11,9 +11,7 @@ int main()
         scanf("%d",tracks[i]);
     }
     int totalSeekMovement=0;
-
-
     printf("Total Seek Movement : %d\n",totalSeekMovement);
-
+    
     return 0;
 }
