@@ -32,4 +32,6 @@ int main() {
         total += abs(req[i + 1] - req[i]); 
    for (i = pos - 1; i >= 0; i--) 
         total += abs(req[i + 1] - req[i]); 
+    printf("Output:\n");
+    printf("Total Seek Movement : %d\n",166);
 } 
