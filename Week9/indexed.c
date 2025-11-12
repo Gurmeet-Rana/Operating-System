@@ -25,8 +25,7 @@ int main() {
             scanf("%d", &f[i].blocks[j]); 
     } 
  
-    printf("\n%-10s%-15s%-15s%-20s\n", "File Name", "Index block", "No. of blocks", "Blocks 
-occupied"); 
+    printf("\n%-10s%-15s%-15s%-20s\n", "File Name", "Index block", "No. of blocks", "Blocks occupied"); 
     for (int i = 0; i < n; i++) { 
         printf("%-10s%-15d%-15d", f[i].name, f[i].indexBlock, f[i].nBlocks); 
         for (int j = 0; j < f[i].nBlocks; j++) 
