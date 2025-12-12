@@ -31,7 +31,9 @@ int main() {
     } 
     for (i = pos; i < n; i++) 
         total += abs(req[i + 1] - req[i]); 
+
     total += (disk_size - 1 - req[n]) + (disk_size - 1); 
+    
     for (i = 0; i < pos; i++) 
         total += abs(req[i + 1] - req[i]); 
     printf("\nOutput:\nTotal seek movement : %d\n", total); 

@@ -80,8 +80,26 @@ int main()
         if(found==0)
         {
             printf("Safe not Possibel : \n");
+            return 0;
         }
     }
+
+    if(count!=n)
+    {
+        printf("\nProcesses causing deadlock: ");
+        int deadlock = 0;
+        for(int i = 0; i < n; i++) {
+            if(finished[i] == 0) {
+                printf("P%d ", i);
+                deadlock = 1;
+            }
+        }
+        if(!deadlock)
+            printf("None (All processes finished)\n");
+        else
+            printf("\n");
+    }
+
     // Print Safe Sequence
     printf("\nSystem is in SAFE state.\nSafe Sequence: ");
     for(int i = 0; i < n; i++)
